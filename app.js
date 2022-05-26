@@ -19,16 +19,15 @@ const urls = mongoose.Schema({
 });
 const UrlModel = mongoose.model("Urls", urls);
 
-const connectDb = async () => {
+(async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI);
     console.log(conn.connection.host);
   } catch (error) {
     console.log(error);
   }
-};
+})();
 
-connectDb();
 app.set("view engine", "ejs");
 
 app.use(morgan("tiny"));
