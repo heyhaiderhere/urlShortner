@@ -12,6 +12,7 @@
       <input type="text" name="url" class="url" />
       <input type="submit" value="Generate" />
     </form>
+    <div class="area"></div>
     <script>
       const form = document.querySelector("#form");
       form.addEventListener("submit", (e) => {
@@ -27,7 +28,15 @@
           .then((data) => {
             return data.json();
           })
-          .then((response) => console.log("response" + response));
+          .then((response) => {
+            const area = document.querySelector(".area");
+            const displayUrl = document.createElement("a");
+            area.innerHTML = "";
+            displayUrl.textContent = response;
+            displayUrl.href = response;
+            area.append(displayUrl);
+            console.log(response);
+          });
       });
     </script>
   </body>

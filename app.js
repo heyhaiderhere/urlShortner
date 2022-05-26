@@ -42,6 +42,10 @@ app.get("/", (req, res) => {
 app.post("/url", async (req, res) => {
   const { url } = req.body;
   let urlSlug = nanoid(5);
+  if (!url) {
+    res.send("please enter a url");
+    return;
+  }
   const slugExist = UrlModel.findOne({ urlSlug });
   if (slugExist) {
     urlSlug = nanoid(5);
